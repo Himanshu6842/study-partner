@@ -3,28 +3,129 @@
 <head>
   <meta charset="UTF-8">
   <title>Dashboard</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+    }
+
+    .container {
+      padding: 30px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      font-size: 28px;
+    }
+
+    .logout-btn {
+      background: red;
+      border: none;
+      padding: 10px 15px;
+      color: white;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.1);
+      padding: 20px;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card h2 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+  </style>
 </head>
+
 <body>
 
-  <h1>Welcome to Dashboard 🎉</h1>
+  <div class="container">
 
-  <p id="status"></p>
+    <!-- HEADER -->
+    <div class="header">
+      <h1>🚀 Welcome Dashboard</h1>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
 
-  <button onclick="logout()">Logout</button>
+    <!-- CARDS -->
+    <div class="cards">
+
+      <div class="card">
+        <h2>👤 Profile</h2>
+        <p>User details and account info</p>
+      </div>
+
+      <div class="card">
+        <h2>📚 Courses</h2>
+        <p>Your learning progress</p>
+      </div>
+
+      <div class="card">
+        <h2>📊 Analytics</h2>
+        <p>Performance overview</p>
+      </div>
+
+      <div class="card">
+        <h2>⚙ Settings</h2>
+        <p>Manage preferences</p>
+      </div>
+
+    </div>
+
+  </div>
 
   <script>
-    // check token
+    // LOGIN CHECK
     const token = localStorage.getItem("token");
 
     if (!token) {
-      alert("Please login first ❌");
+      alert("Login first!");
       window.location.href = "index.html";
-    } else {
-      document.getElementById("status").innerText = "You are logged in ✅";
+    }
+
+    // LOGOUT
+    function logout() {
+      localStorage.removeItem("token");
+      window.location.href = "index.html";
     }
   </script>
-
-  <script src="script.js"></script>
 
 </body>
 </html>

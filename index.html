@@ -3,40 +3,82 @@
 <head>
   <meta charset="UTF-8">
   <title>Study Partner</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      width: 300px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      background: #667eea;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #5a67d8;
+    }
+
+    .divider {
+      margin: 20px 0;
+    }
+  </style>
 </head>
+
 <body>
+
+<div class="container">
 
   <h1>Study Partner 🚀</h1>
 
-  <!-- ================= SIGNUP ================= -->
-  <h2>Signup</h2>
-
-  <input type="text" id="signupName" placeholder="Enter Name" />
-  <br><br>
-
-  <input type="email" id="signupEmail" placeholder="Enter Email" />
-  <br><br>
-
-  <input type="password" id="signupPassword" placeholder="Enter Password" />
-  <br><br>
-
+  <h3>Signup</h3>
+  <input type="text" id="signupName" placeholder="Name">
+  <input type="email" id="signupEmail" placeholder="Email">
+  <input type="password" id="signupPassword" placeholder="Password">
   <button onclick="signup()">Signup</button>
 
-  <hr><br>
+  <div class="divider">OR</div>
 
-  <!-- ================= LOGIN ================= -->
-  <h2>Login</h2>
-
-  <input type="email" id="loginEmail" placeholder="Enter Email" />
-  <br><br>
-
-  <input type="password" id="loginPassword" placeholder="Enter Password" />
-  <br><br>
-
+  <h3>Login</h3>
+  <input type="email" id="loginEmail" placeholder="Email">
+  <input type="password" id="loginPassword" placeholder="Password">
   <button onclick="login()">Login</button>
 
-  <!-- SCRIPT -->
-  <script src="script.js"></script>
+</div>
+
+<script src="script.js"></script>
 
 </body>
 </html>

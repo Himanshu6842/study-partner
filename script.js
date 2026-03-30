@@ -1,16 +1,18 @@
+const BASE_URL = "https://study-partner-backend-eiss.onrender.com";
+
+// ================= SIGNUP =================
 async function signup() {
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-
-  // 🔴 Validation
-  if (!name || !email || !password) {
-    alert("Please fill all fields ,name ,email, password");
-    return;
-  }
-
   try {
-    const res = await fetch("http://localhost:5000/signup", {
+    const name = document.getElementById("signupName").value;
+    const email = document.getElementById("signupEmail").value;
+    const password = document.getElementById("signupPassword").value;
+
+    if (!name || !email || !password) {
+      alert("Please fill all fields ❌");
+      return;
+    }
+
+    const res = await fetch(BASE_URL + "/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -18,37 +20,56 @@ async function signup() {
       body: JSON.stringify({ name, email, password })
     });
 
-    const data = await res.text();
-    alert(data);
+    const data = await res.json();
+
+    alert(data.message);
 
   } catch (err) {
     alert("Error: " + err);
   }
 }
 
+
+// ================= LOGIN =================
 async function login() {
-  const email = document.getElementById("loginEmail").value;
-  const password = document.getElementById("loginPassword").value;
+  try {
+    const email = document.getElementById("loginEmail").value;
+    const password = document.getElementById("loginPassword").value;
 
-  if (!email || !password) {
-    alert("Please fill all fields ❌");
-    return;
+    if (!email || !password) {
+      alert("Please fill all fields ❌");
+      return;
+    }
+
+    const res = await fetch(BASE_URL + "/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ email, password })
+    });
+
+    const data = await res.json();
+
+    if (data.token) {
+      localStorage.setItem("token", data.token);
+      alert("Login Successful ✅");
+
+      // redirect
+      window.location.href = "dashboard.html";
+    } else {
+      alert(data.message || "Login failed ❌");
+    }
+
+  } catch (err) {
+    alert("Error: " + err);
   }
+}
 
-  const res = await fetch("http://localhost:5000/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ email, password })
-  });
 
-  const data = await res.json();
-
-  if (data.token) {
-    localStorage.setItem("token", data.token);
-    window.location.href = "dashboard.html";
-  } else {
-    alert(data.message);
-  }
+// ================= LOGOUT =================
+function logout() {
+  localStorage.removeItem("token");
+  alert("Logged out 👋");
+  window.location.href = "index.html";
 }

@@ -1,35 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Dashboard</title>
 </head>
 <body>
 
-<h2>Welcome to Dashboard 🎉</h2>
+  <h1>Welcome to Dashboard 🎉</h1>
 
-<button onclick="logout()">Logout</button>
-<script>
-  const user = localStorage.getItem("user");
+  <p id="status"></p>
 
-  if (!user) {
-    alert("Please login first ❌");
-    window.location.href = "index.html";
-  }
-</script>
-<script>
-  const token = localStorage.getItem("token");
+  <button onclick="logout()">Logout</button>
 
-  if (!token) {
-    alert("Unauthorized ❌");
-    window.location.href = "index.html";
-  }
-</script>
-<script>
-  function logout() {
-    localStorage.removeItem("user");
-    window.location.href = "index.html";
-  }
-</script>
+  <script>
+    // check token
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      alert("Please login first ❌");
+      window.location.href = "index.html";
+    } else {
+      document.getElementById("status").innerText = "You are logged in ✅";
+    }
+  </script>
+
+  <script src="script.js"></script>
 
 </body>
 </html>
